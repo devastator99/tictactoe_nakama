@@ -1,0 +1,30 @@
+name: LILA TicTacToe
+
+socket:
+  address: "0.0.0.0"
+  port: 7350
+
+console:
+  address: "0.0.0.0"
+  port: 7351
+
+database:
+  conn_max_lifetime_ms: 0
+  max_open_conns: 0
+  max_idle_conns: 0
+
+runtime:
+  env:
+    - LILA_ENV=production
+  path: /nakama/data/modules/build/
+
+logger:
+  level: info
+  format: JSON
+  stdout: true
+
+session:
+  token_expiry_sec: 86400
+  refresh_token_expiry_sec: 2592000
+  single_session: false
+  single_find: false

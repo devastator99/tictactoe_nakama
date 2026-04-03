@@ -1,0 +1,19 @@
+{
+  "name": "lila-nakama-modules",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --ignoreConfig runtime.ts --target ES5 --lib ES2015,DOM --module none --skipLibCheck --ignoreDeprecations 6.0 --outFile build/index.js",
+    "dev": "tsc --ignoreConfig runtime.ts --target ES5 --lib ES2015,DOM --module none --skipLibCheck --ignoreDeprecations 6.0 --outFile build/index.js --watch",
+    "test:unit": "node scripts/test-ai-cheat-optimized.mjs",
+    "test:scalability": "node scripts/scalability-check.mjs",
+    "test": "npm run build && node scripts/validate-runtime-build.mjs && npm run test:unit",
+    "extract": "echo Extracting resources for backend..."
+  },
+  "devDependencies": {
+    "nakama-runtime": "^1.0.0",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.19.0",
+    "typescript": "^6.0.2"
+  }
+}

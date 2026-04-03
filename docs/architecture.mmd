@@ -1,0 +1,11 @@
+flowchart TD
+  A[React PWA Frontend] -->|WebSocket| B[Nakama Match Runtime]
+  A -->|RPC over HTTP| B
+  B --> C[(PostgreSQL)]
+  B --> D[(Nakama Storage Collections)]
+  D --> E[Replay Records]
+  D --> F[Leaderboard + Stats]
+  D --> G[Analytics + Activity]
+  B -->|Voice Signal Relay| A
+  H[(Redis Cache - optional)] --> A
+  H --> B

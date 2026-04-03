@@ -1,0 +1,16 @@
+{
+  "name": "LILA Tic-Tac-Toe",
+  "short_name": "LILA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030308",
+  "theme_color": "#030308",
+  "description": "Server-authoritative multiplayer Tic-Tac-Toe with AI, replays, and live activity.",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/playwright-report/
+frontend/test-results/
+
+# Nakama modules
+nakama/data/modules/node_modules/
+nakama/data/modules/build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# macOS / editor
+.DS_Store
+.vscode/

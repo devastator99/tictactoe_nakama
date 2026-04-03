@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: LILA Nakama RPC API
+  version: 1.0.0
+  description: |
+    Public RPC surface for the LILA server-authoritative tic-tac-toe backend.
+servers:
+  - url: http://localhost:7350
+paths:
+  /v2/rpc/find_or_create_match:
+    post:
+      summary: Start matchmaking or direct-create AI/shadow queue match
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum: [classic, timed, vs_ai_easy, vs_ai_medium, vs_ai_hard]
+      responses:
+        '200':
+          description: Ticket or direct match id
+  /v2/rpc/create_private_match:
+    post:
+      summary: Create private room or direct AI room
+      responses:
+        '200':
+          description: Match info
+  /v2/rpc/join_private_match:
+    post:
+      summary: Join room by code
+      responses:
+        '200':
+          description: Match id
+  /v2/rpc/get_leaderboard:
+    post:
+      summary: Get top leaderboard entries
+      responses:
+        '200':
+          description: Leaderboard list
+  /v2/rpc/get_player_stats:
+    post:
+      summary: Get player stat totals
+      responses:
+        '200':
+          description: Player stats
+  /v2/rpc/get_match_replay:
+    post:
+      summary: Read replay by match id or recent replay list
+      responses:
+        '200':
+          description: Replay data
+  /v2/rpc/get_analytics:
+    post:
+      summary: Aggregate gameplay analytics snapshot
+      responses:
+        '200':
+          description: Analytics snapshot
+  /v2/rpc/get_live_activity:
+    post:
+      summary: Get latest global activity events
+      responses:
+        '200':
+          description: Activity feed
