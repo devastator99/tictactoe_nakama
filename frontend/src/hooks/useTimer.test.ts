@@ -3,7 +3,7 @@ const mockGameState = {
   phase: 'lobby',
 }
 
-function createUseTimerMock(gameState) {
+function createUseTimerMock(gameState:any) {
   return () => {
     let timeLeft = null
     let intervalRef = null
@@ -14,7 +14,7 @@ function createUseTimerMock(gameState) {
       timeLeft = Math.ceil(remaining / 1000)
     }
 
-    const formatTime = (seconds) => {
+    const formatTime = (seconds:number) => {
       const mins = Math.floor(seconds / 60)
       const secs = seconds % 60
       return `${mins}:${secs.toString().padStart(2, '0')}`
