@@ -26,6 +26,7 @@ npm run start
 
 ## Table Of Contents
 
+- [Core Design Philosophy](#core-design-philosophy)
 - [Project Intent](#project-intent)
 - [Whats Working Today](#whats-working-today)
 - [Screenshots](#screenshots)
@@ -42,6 +43,19 @@ npm run start
 - [Extension Workflow](#extension-workflow)
 - [Deployment Notes](#deployment-notes)
 - [Troubleshooting](#troubleshooting)
+
+## Core Design Philosophy
+
+LILA is **server-authoritative**:
+
+- All gameplay logic runs on Nakama
+- Clients only send **intent**, never state
+- Server enforces: move validity, turn order, win conditions, anti-cheat guarantees
+
+| Approach             | Problem             |
+| -------------------- | ------------------- |
+| Client-authoritative | Easy cheating      |
+| Server-authoritative | Consistent + secure |
 
 ## Project Intent
 
@@ -122,6 +136,23 @@ flowchart TD
   D --> G[Analytics + Activity + Trust]
   B -->|Voice Signal Relay| A
 ```
+
+### Why Nakama?
+
+- Built-in realtime multiplayer primitives
+- Match state + RPC + storage in one system
+- Eliminates need for custom socket server
+
+### Why WebSocket + RPC?
+
+- WebSocket → realtime match updates
+- RPC → matchmaking, stats, metadata
+
+### Why Zustand (frontend)?
+
+- Lightweight
+- Minimal boilerplate
+- Works well with realtime state
 
 ## Repository Map
 
@@ -323,6 +354,23 @@ The project uses layered validation:
 - Integration smoke test (two simulated players against real Nakama)
 - Mobile lint + type-check validation
 
+### Multiplayer Testing
+
+**Automated (recommended):**
+
+```bash
+make smoke
+```
+
+Simulates 2 players and full match lifecycle.
+
+**Manual Testing (IMPORTANT):**
+
+1. Open two browser windows
+2. Login as two users
+3. Join matchmaking
+4. Verify: moves sync instantly, turn order enforced, win condition correct
+
 Recommended pre-merge gate:
 
 ```bash
@@ -379,6 +427,7 @@ Design direction:
 - Playwright visual baselines are environment-sensitive and can be platform-specific.
 - The mobile app currently uses the same backend concepts as the web app, but feature parity should still be verified screen by screen whenever gameplay flows change.
 - `make smoke` and `npm run smoke` depend on a healthy live Nakama stack rather than mocked services.
+- Free hosting (Render) may sleep
 
 ## Extension Workflow
 
