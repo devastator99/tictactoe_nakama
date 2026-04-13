@@ -1,4 +1,4 @@
-# LILA
+# GameCore
 
 Server-authoritative multiplayer Tic-Tac-Toe built with Nakama, PostgreSQL, React, TypeScript, Vite, and React Native.
 
